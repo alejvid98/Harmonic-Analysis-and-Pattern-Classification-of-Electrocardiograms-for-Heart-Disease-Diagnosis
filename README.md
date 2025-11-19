@@ -16,5 +16,5 @@ Submission ID: 10091
 
 Description of files: The database used in the study is attached.
 An example of the estimator in mathematica is included.
-The main code is provided, which calls the 'armonicos_v2' file to perform the harmonic estimation.
-After that process, the main code calls the 'clasificador_armonicos' file, which is responsible for generating the final prediction.
+The main code is provided, which calls the 'armonicos_v2.slx' file to perform the harmonic estimation.
+After that process, the main code calls the 'clasificador_armonicos.slx' file, which is responsible for generating the final prediction.
