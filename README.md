@@ -14,7 +14,6 @@ His research interest centers on optimal control, neural control, sliding modes 
 - Jose Ortiz Bejar: He received the Ph.D. degree in data science from INFOTEC, Unidad Aguascalientes, in 2020. He is currently an associate professor with the Michoacan University of San Nicolás de Hidalgo. He has served as an Organizer of ROPEC and IEEE T\&DLA conferences. 
 His research interest centers on machine learning applied to power systems analysis, text categorization, and clustering.
 
---
 
 ## 📁 Files
 
