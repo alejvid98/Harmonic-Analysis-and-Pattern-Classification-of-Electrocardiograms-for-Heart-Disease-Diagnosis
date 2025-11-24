@@ -21,6 +21,7 @@ His research interest centers on machine learning applied to power systems analy
 The following files are used to obtain the research results.
 
 | File |  
+|------|
 | example estimator.nb | 
 | base_datos.csv |
 | main.m| 
