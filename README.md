@@ -20,17 +20,31 @@ His research interest centers on machine learning applied to power systems analy
 
 The following files are used to obtain the research results.
 
-| File | Description |
-|--------|-------------------|
-| github.com | Figure 1 |
-|--------|-------------------|
-| github.com | Figure 1 |
-|--------|-------------------|
-| github.com | Figure 1 |
-|--------|-------------------|
-| github.com | Figure 1 |
+| File |  
+|--------|
+| example estimator.nb | 
+|--------|
+| base_datos.csv |
+|--------|
+| main.m| 
+|--------|
+| armonicosv2.slx |
+|--------|
+| clasificador_armonicos.slx |
 
-Description of files: The database used in the study is attached.
-An example of the estimator in mathematica is included.
-The main code is provided, which calls the 'armonicos_v2.slx' file to perform the harmonic estimation.
-After that process, the main code calls the 'clasificador_armonicos.slx' file, which is responsible for generating the final prediction.
+### 📝 Description of Files
+
+- **example estimator.nb:** Mathematica file that includes an example of the harmonic estimator used in the methodology.
+- **base_datos.csv:** Contains the database used in the study, specifically the amplitudes of the harmonics extracted from ECG signals.
+- **main.m:** Main execution script in MATLAB where the system parameters are defined, and the observer gains for the estimator are calculated. This script is responsible for controlling the workflow, calling the required Simulink models, interpreting the results, and finally determining the pathology.
+- **armonicosv2.slx:** Simulink model used for harmonic estimation. This model must be opened before executing `main.m`, but no manual intervention is required inside the model, as its execution is fully controlled from `main.m`.
+- **clasificador_armonicos.slx:** Simulink model responsible for classifying the ECG signal based on the estimated harmonic values. This model also needs to be open before execution but does not require manual actions. It receives the estimation results from the previous model and outputs a classification label.
+
+During execution, `main.m` first runs `armonicosv2.slx` to obtain the harmonic estimation. Once completed, the results are automatically passed to `clasificador_armonicos.slx`, which outputs a numeric label corresponding to a pathology:
+
+- **0 → Healthy**
+- **1 → Arrhythmia**
+- **2 → Myocardial Infarction**
+- **3 → Heart Failure**
+
+Finally, `main.m` interprets the label and outputs the corresponding diagnosis in text format.
