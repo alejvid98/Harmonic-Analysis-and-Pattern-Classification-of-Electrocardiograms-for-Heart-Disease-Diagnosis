@@ -27,6 +27,9 @@ The following files are used to obtain the research results.
 | main.m| 
 | armonicosv2.slx |
 | clasificador_armonicos.slx |
+| knnSFunction.m|
+| predictKNN.m |
+| knnModel.mat |
 
 ### 📝 Description of Files
 
@@ -35,6 +38,11 @@ The following files are used to obtain the research results.
 - **main.m:** Main execution script in MATLAB where the system parameters are defined, and the observer gains for the estimator are calculated. This script is responsible for controlling the workflow, calling the required Simulink models, interpreting the results, and finally determining the pathology.
 - **armonicosv2.slx:** Simulink model used for harmonic estimation. This model must be opened before executing `main.m`, but no manual intervention is required inside the model, as its execution is fully controlled from `main.m`.
 - **clasificador_armonicos.slx:** Simulink model responsible for classifying the ECG signal based on the estimated harmonic values. This model also needs to be open before execution but does not require manual actions. It receives the estimation results from the previous model and outputs a classification label.
+- **knnSFunction.m:** This file is required by the `clasificador_armonicos.slx` model. It acts as a custom Simulink function that connects the harmonic data with the trained KNN classifier. No manual configuration is needed — the function works automatically during model execution.
+- **predictKNN.m:** This file is used by the `knnSFunction.m` block inside the `clasificador_armonicos.slx` model. It loads the trained classifier stored in `knnModel.mat` and receives the harmonic values as input. Then, it processes the data and returns the final prediction label based on the trained KNN model. No modification or manual interaction is required — the function runs automatically as part of the Simulink classification process.
+- **knnModel.mat:** This file contains the pre-trained K-Nearest Neighbors model.  
+
+
 
 During execution, `main.m` first runs `armonicosv2.slx` to obtain the harmonic estimation. Once completed, the results are automatically passed to `clasificador_armonicos.slx`, which outputs a numeric label corresponding to a pathology:
 
@@ -44,3 +52,10 @@ During execution, `main.m` first runs `armonicosv2.slx` to obtain the harmonic e
 - **3 → Heart Failure**
 
 Finally, `main.m` interprets the label and outputs the corresponding diagnosis in text format.
+
+--
+To run the diagnosis process, the ECG signals to be analyzed must be placed inside a folder named **`data`**.  
+The system reads the signals automatically from this folder, so maintaining the folder name and structure is required.  
+The dataset (`base_datos.csv`) is **not needed for normal execution** — it is only included in case the user wishes to retrain or test new classifiers.
+
+
